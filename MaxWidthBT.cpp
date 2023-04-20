@@ -18,6 +18,7 @@ public:
         while (!q.empty()) {
             int levelSize = q.size();
             int leftIndex = q.front().second;
+            int rightIndex = q.back().second;
 
             for (int i = 0; i < levelSize; i++) {
                 auto [node, index] = q.front();
@@ -29,8 +30,6 @@ public:
                 if (node->right) {
                     q.push({node->right, 2 * index + 1});
                 }
-
-                int rightIndex = index;
             }
 
             maxWidth = std::max(maxWidth, rightIndex - leftIndex + 1);
