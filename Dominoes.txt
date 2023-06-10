@@ -1,0 +1,27 @@
+#include <vector>
+#include <unordered_map>
+
+class Solution {
+public:
+    int numEquivDominoPairs(vector<vector<int>>& dominoes) {
+        unordered_map<int, int> countMap;
+        int numPairs = 0;
+
+        for (const auto& domino : dominoes) {
+            int key = domino[0] * 10 + domino[1]; // Creating a unique key for each domino
+            int reverseKey = domino[1] * 10 + domino[0]; // Creating the reverse key
+
+            // Increment the count of the key in the map
+            numPairs += countMap[key];
+
+            // Increment the count for the reverse key (e.g., [1, 2] and [2, 1])
+            if (key != reverseKey)
+                numPairs += countMap[reverseKey];
+
+            // Increment the count for the current key
+            countMap[key]++;
+        }
+
+        return numPairs;
+    }
+};
