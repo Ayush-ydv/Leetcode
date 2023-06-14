@@ -1,0 +1,37 @@
+class Solution {
+public:
+    vector<int> sortByBits(vector<int>& arr) {
+        sort(arr.begin(),arr.end(),[this](int a, int b){  //lambda function
+            int countA = this->countBits(a);
+            int countB = this->countBits(b);
+
+            if(countA == countB){
+                return a<b;
+            }
+
+            // else if(countA > countB){
+            //     return countA > countB;
+            // }
+
+            else{
+                return countA<countB;
+            }
+
+        });
+
+        return arr;
+    }
+
+    private:
+        int countBits(int n){
+            int count = 0;
+            while(n!=0){
+                if(n & 1){
+                    count++;
+                }
+                n>>=1;
+            }
+
+            return count;
+        }
+};
