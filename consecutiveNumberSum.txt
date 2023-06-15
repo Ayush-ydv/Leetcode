@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int consecutiveNumbersSum(int n) {
+        int sum = 0;
+        int count = 0;
+        int i = 1;
+
+        while(sum<n){
+            sum+=i;
+
+            if((n-sum) % i == 0){
+                count++;
+            }
+
+            i++;
+        }
+
+        return count;
+    }
+};
