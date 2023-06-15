@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int maxChunksToSorted(vector<int>& arr) {
+        stack<int> st;
+        int maxChunk = 0;
+        
+        for (int num : arr) {
+            if (st.empty() || num >= st.top()) {
+                st.push(num);
+            } else {
+                int maxElement = st.top();
+                while (!st.empty() && num < st.top()) {
+                    st.pop();
+                }
+                st.push(maxElement);
+            }
+        }
+        
+        return st.size();
+    }
+};
